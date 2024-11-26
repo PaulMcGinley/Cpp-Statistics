@@ -8,7 +8,8 @@ float GetMean(float values[], int numValues)
 	float sumOfValues = 0.0f;
 
 	// Loop through all the values and add them together
-	for (int i = 0; i < numValues; ++i) {
+	for (int i = 0; i < numValues; ++i)
+	{
 		sumOfValues += values[i];
 	}
 
