@@ -3,12 +3,19 @@
 
 float GetMean(float values[], int numValues)
 {
+	if (numValues == 0)
+	{
+		std::cout << "Error: Empty values array.\n";
+		return 0.0f;
+	}
+
 	float mean = 0.0f;
 
 	float sumOfValues = 0.0f;
 
 	// Loop through all the values and add them together
-	for (int i = 0; i < numValues; ++i) {
+	for (int i = 0; i < numValues; ++i)
+	{
 		sumOfValues += values[i];
 	}
 
@@ -21,20 +28,31 @@ float GetMean(float values[], int numValues)
 
 float GetMedian(float values[], int numValues)
 {
+	if (numValues == 0)
+	{
+		std::cout << "Error: Empty values array.\n";
+		return 0.0f;
+	}
+
 	float median = 0.0f;
 
 	// Determine if the number of values is even.
 	// If it is, the median is the average of the two middle values.
 	const bool isEven = numValues % 2 == 0;
+	// If it is odd, the median is the middle value.
+	const bool isOdd = !isEven;
 
-	if (isEven) {
+	if (isEven)
+	{
 		// Get the two middle values
 		const int rightIndex = numValues / 2; // Right index of the two middle values
 		const int leftIndex = rightIndex - 1; // Left index of the two middle values
 
 		median = (values[leftIndex] + values[rightIndex]) / 2.0f;
 	}
-	else {
+
+	if (isOdd)
+	{
 		// Get the single middle value
 		const int middleIndex = numValues / 2;
 
@@ -46,6 +64,12 @@ float GetMedian(float values[], int numValues)
 
 float GetMode(float values[], int numValues)
 {
+	if (numValues == 0)
+	{
+		std::cout << "Error: Empty values array.\n";
+		return 0.0f;
+	}
+
 	float mode = 0.0f;
 
 	// Create a map to store the count of each value <value[i], count>
@@ -76,6 +100,12 @@ float GetMode(float values[], int numValues)
 
 float GetRange(float values[], int numValues)
 {
+	if (numValues == 0)
+	{
+		std::cout << "Error: Empty values array.\n";
+		return 0.0f;
+	}
+
 	float range = 0.0f;
 
 	float min = values[0]; // Set the minimum to the first value as a starting point
@@ -101,6 +131,12 @@ float GetRange(float values[], int numValues)
 
 float GetVariance(float values[], int numValues, bool isSampled)
 {
+	if (numValues == 0)
+	{
+		std::cout << "Error: Empty values array.\n";
+		return 0.0f;
+	}
+
 	float variance = 0.0f;
 
 	// Calculate the mean using this handy wee fella I made earlier
@@ -130,6 +166,12 @@ float GetVariance(float values[], int numValues, bool isSampled)
 
 float GetStandardDeviation(float values[], int numValues, bool isSampled)
 {
+	if (numValues == 0)
+	{
+		std::cout << "Error: Empty values array.\n";
+		return 0.0f;
+	}
+
 	float standardDeviation = 0.0f;
 
 	// Get the variance
@@ -143,6 +185,12 @@ float GetStandardDeviation(float values[], int numValues, bool isSampled)
 
 float GetMAD(float values[], int numValues)
 {
+	if (numValues == 0)
+	{
+		std::cout << "Error: Empty values array.\n";
+		return 0.0f;
+	}
+
 	float mad = 0.0f;
 
 	// Get the mean
@@ -165,6 +213,12 @@ float GetMAD(float values[], int numValues)
 
 float GetSEM(float values[], int numValues, bool isSampled)
 {
+	if (numValues == 0)
+	{
+		std::cout << "Error: Empty values array.\n";
+		return 0.0f;
+	}
+	
 	float sem = 0.0f;
 
 	// Get the standard deviation
