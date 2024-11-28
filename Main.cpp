@@ -1,6 +1,11 @@
 #include <iostream>
 #include <map>
 
+float* SortArray(float values[], int numValues);
+
+// Mean: The average of all the values
+// Method: Sum all the values and divide by the number of values
+// [1, 2, 3, 4, 5] -> (1 + 2 + 3 + 4 + 5) / 5 = 3
 float GetMean(float values[], int numValues)
 {
 	if (numValues == 0)
@@ -26,6 +31,11 @@ float GetMean(float values[], int numValues)
 	return mean;
 }
 
+// Median: The middle value of the sorted values
+// Method: Sort the values, then find the middle value
+// If the number of values is even, the median is the average of the two middle values
+// [1, 2, 3, 4, 5] -> 3
+// [1, 2, 3, 4, 5, 6] -> (3 + 4) / 2 = 3.5
 float GetMedian(float values[], int numValues)
 {
 	if (numValues == 0)
@@ -34,14 +44,16 @@ float GetMedian(float values[], int numValues)
 		return 0.0f;
 	}
 
+	// Sort the values
+	values = SortArray(values, numValues);
+
 	float median = 0.0f;
 
-	// Determine if the number of values is even.
-	// If it is, the median is the average of the two middle values.
+	// Determine if the number of values is even or odd.
 	const bool isEven = numValues % 2 == 0;
-	// If it is odd, the median is the middle value.
 	const bool isOdd = !isEven;
 
+	// If it is, the median is the average of the two middle values.
 	if (isEven)
 	{
 		// Get the two middle values
@@ -51,6 +63,7 @@ float GetMedian(float values[], int numValues)
 		median = (values[leftIndex] + values[rightIndex]) / 2.0f;
 	}
 
+	// If it is odd, the median is the middle value.
 	if (isOdd)
 	{
 		// Get the single middle value
@@ -62,6 +75,36 @@ float GetMedian(float values[], int numValues)
 	return median;
 }
 
+//function to sort a float arrays and return the sorted array
+float* SortArray(float values[], int numValues)
+{
+	// Create a new array to store the sorted values
+	float* sortedValues = new float[numValues];
+
+	// Copy the values into the new array
+	for (int i = 0; i < numValues; ++i)
+	{
+		sortedValues[i] = values[i];
+	}
+
+	// Bubble sort the array
+	for (int i = 0; i < numValues - 1; ++i) // Loop through all the values
+		for (int j = 0; j < numValues - i - 1; ++j) // Loop through all the values up to the last sorted value
+			if (sortedValues[j] > sortedValues[j + 1])
+			{
+				// Swap the values
+				float temp = sortedValues[j];
+				sortedValues[j] = sortedValues[j + 1];
+				sortedValues[j + 1] = temp;
+			}
+
+	return sortedValues;
+}
+
+// Mode: The value that appears most frequently
+// Method: Count the frequency of each value and return the value with the highest frequency
+// If there are multiple modes, return the first mode found
+// [1, 2, 2, 3, 4, 5] -> 2
 float GetMode(float values[], int numValues)
 {
 	if (numValues == 0)
@@ -98,6 +141,9 @@ float GetMode(float values[], int numValues)
 	// This will only return the first mode found if there are multiple modes
 }
 
+// Range: The difference between the maximum and minimum values
+// Method: Find the maximum and minimum values, then subtract the minimum from the maximum
+// [1, 2, 3, 4, 5] -> 5 - 1 = 4
 float GetRange(float values[], int numValues)
 {
 	if (numValues == 0)
@@ -129,6 +175,11 @@ float GetRange(float values[], int numValues)
 	return range;
 }
 
+// Variance: The average of the squared differences from the mean
+// Method: Calculate the mean, then sum the squared differences from the mean
+// Divide by the number of values to get the variance
+// If sampled, divide by (numValues - 1), else divide by numValues
+// [1, 2, 3, 4, 5] -> ((1-3)^2 + (2-3)^2 + (3-3)^2 + (4-3)^2 + (5-3)^2) / 5 -> (2 + 2.5 + 2 + 1 + 2) / 5 = 1.7
 float GetVariance(float values[], int numValues, bool isSampled)
 {
 	if (numValues == 0)
@@ -164,6 +215,9 @@ float GetVariance(float values[], int numValues, bool isSampled)
 	return variance;
 }
 
+// Standard Deviation: The square root of the variance
+// Method: Calculate the variance, then take the square root
+// [1, 2, 3, 4, 5] -> sqrt(1.7) = 1.3038
 float GetStandardDeviation(float values[], int numValues, bool isSampled)
 {
 	if (numValues == 0)
@@ -183,6 +237,10 @@ float GetStandardDeviation(float values[], int numValues, bool isSampled)
 	return standardDeviation;
 }
 
+// Mean Absolute Deviation: The average of the absolute differences from the mean
+// Method: Calculate the mean, then sum the absolute differences from the mean
+// Divide by the number of values to get the mean absolute deviation
+// [1, 2, 3, 4, 5] -> (|1-3| + |2-3| + |3-3| + |4-3| + |5-3|) / 5 -> (2 + 1 + 0 + 1 + 2) / 5 = 1.2
 float GetMAD(float values[], int numValues)
 {
 	if (numValues == 0)
@@ -211,6 +269,9 @@ float GetMAD(float values[], int numValues)
 	return mad;
 }
 
+// Standard Error of the Mean: The standard deviation of the sample mean
+// Method: Calculate the standard deviation, then divide by the square root of the number of values
+// [1, 2, 3, 4, 5] -> sqrt(1.7) / sqrt(5) = 0.582
 float GetSEM(float values[], int numValues, bool isSampled)
 {
 	if (numValues == 0)
