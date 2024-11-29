@@ -1,3 +1,4 @@
+#include <iomanip>
 #include <iostream>
 #include <map>
 
@@ -314,18 +315,18 @@ int main()
 			std::cout << "\n";
 		std::cout << levelTimes[i] << "\t";
 	}
-	std::cout << "\n";
+	std::cout << "\n\n";
 	std::cout << "Number of samples:\t" << numTimes << "\n";
 	std::cout << "Is data sampled?\t" << (sampled ? "Yes" : "No") << "\n";
 	std::cout << "\n";
 
 	std::cout << "---- Statistics Calculations for Data Set ----\n";
-	std::cout << "Mean:\t\t\t\t" << mean << "\n";
-	std::cout << "Median:\t\t\t\t" << median << "\n";
-	std::cout << "Mode:\t\t\t\t" << mode << "\n";
-	std::cout << "Range:\t\t\t\t" << range << "\n";
-	std::cout << "Variance:\t\t\t" << variance << "\n";
-	std::cout << "Standard Deviation:\t\t" << standardDeviation << "\n";
-	std::cout << "Mean Absolute Deviation:\t" << mad << "\n";
-	std::cout << "Stand error of the mean:\t" << sem << "\n";
+	std::cout << std::left << std::setw(30) << "Mean:" << mean << "\n";
+	std::cout << std::left << std::setw(30) << "Median:" << median << "\n";
+	std::cout << std::left << std::setw(30) << "Mode:" << mode << "\n";
+	std::cout << std::left << std::setw(30) << "Range:" << range << "\n";
+	std::cout << std::left << std::setw(30) << "Variance:" << variance << "\n";
+	std::cout << std::left << std::setw(30) << "Standard Deviation:" << standardDeviation << "\n";
+	std::cout << std::left << std::setw(30) << "Mean Absolute Deviation:" << mad << "\n";
+	std::cout << std::left << std::setw(30) << "Stand error of the mean:" << sem << "\n";
 }
